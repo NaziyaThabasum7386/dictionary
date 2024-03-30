@@ -1,23 +1,48 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
+  // Define a custom dictionary of words and their corrections
+  const customDictionary = [
+    { word: "React", meaning: "A JavaScript library for building user interfaces." },
+    { word: "Component", meaning: "A reusable building block in React." },
+    { word: "State", meaning: "An object that stores data for a component." }
+  ];
+
+  const [input, setInput] = useState("");
+  const [state, setState] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    // Search for the input word in the dictionary
+    const correctedWordObj = customDictionary.find(item => item.word.toLowerCase() === input.toLowerCase());
+    setState(correctedWordObj ? correctedWordObj.meaning : "Word not found in the dictionary.");
+  };
+
+  const handleInputChange = (e) => {
+    setInput(e.target.value);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
+    <div>
+      <h1>Dictionary App</h1>
+      <form onSubmit={handleSubmit}>
+        <input
+          value={input}
+          onChange={handleInputChange}
+          placeholder="Search a word"
+        />
+        <button type="submit">Search</button>
+      </form>
+      <p>
+          <strong>Definition:</strong> 
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {state && ( 
+        <p>
+          <strong>Definition:</strong> <br/> {state}
+        </p>
+      )}
     </div>
   );
 }
