@@ -41,14 +41,14 @@ function App() {
         />
         <button type="submit">Search</button>
       </form>
-      {!text && (
+      
         <p>
-          <strong>Definition:</strong>
+          Definition:
         </p>
-      )}
+      
       {state && (
         <p>
-          <br /> {state}
+           {state}
         </p>
       )}
     </div>
