@@ -11,10 +11,11 @@ function App() {
 
   const [input, setInput] = useState("");
   const [state, setState] = useState("");
-  const [initialrender, setInitialrender] = useState(true);
+  const [text, setText] = useState(true);
 
-  useEffect ( ()=> {
-    setInitialrender(false)  } ,[])
+  useEffect(() => {
+    setText(false);
+  }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -34,20 +35,20 @@ function App() {
       <form onSubmit={handleSubmit}>
         <input
           value={input}
+          type="text" // Set the type attribute to "text"
           onChange={handleInputChange}
           placeholder="Search a word"
         />
         <button type="submit">Search</button>
       </form>
-      {!initialrender &&       <p>
-          <strong>Definition:</strong> 
-        </p>}
-        {initialrender && (
-        <p>Enter a word to search for its definition.</p>
-      )}
-      {state && ( 
+      {!text && (
         <p>
-           <br/> {state}
+          <strong>Definition:</strong>
+        </p>
+      )}
+      {state && (
+        <p>
+          <br /> {state}
         </p>
       )}
     </div>
