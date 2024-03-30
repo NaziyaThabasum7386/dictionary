@@ -39,12 +39,15 @@ function App() {
         />
         <button type="submit">Search</button>
       </form>
-      <p>
+      {!initialrender &&       <p>
           <strong>Definition:</strong> 
-        </p>
+        </p>}
+        {initialrender && (
+        <p>Enter a word to search for its definition.</p>
+      )}
       {state && ( 
         <p>
-          <strong>Definition:</strong> <br/> {state}
+           <br/> {state}
         </p>
       )}
     </div>
